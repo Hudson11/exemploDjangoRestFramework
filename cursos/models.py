@@ -41,3 +41,17 @@ class Avaliacao(Base):
 
     def __str__(self):
         return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'
+
+class Usuario(Base):
+
+    nome = models.CharField(unique=True, max_length=255, default='')
+    email = models.EmailField()
+    cpf = models.DecimalField(unique=True, max_digits=11, decimal_places=0)
+    urlCurriculo = models.URLField(unique=True)
+
+    class Meta:
+        verbose_name = 'Usuario'
+        verbose_name_plural = "Usuarios"
+
+    def __str__(self):
+        return self.nome

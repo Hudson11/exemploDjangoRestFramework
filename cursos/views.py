@@ -1,26 +1,30 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
 
-from .models import Curso, Avaliacao
-from .serializers import CursoSerializers, AvaliacaoSerializers
+from .models import Curso, Avaliacao, Usuario
+from .serializers import CursoSerializers, AvaliacaoSerializers, UsuarioSerializers
 
-class CursoAPIView(APIView):
-    '''
-    API DE ENSINO UDEMY
-    '''
+#ListCreatedAPIView -> GET / POST
+class CursosAPIView (generics.ListCreateAPIView):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializers
 
-    def get(self, request):
-        cursos = Curso.objects.all()
-        serializer = CursoSerializers(cursos, many = True)
-        return Response(serializer.data)
+#RetrieveUpdateDestroyAPIView PUT / DELETE / GETByID
+class CursoAPIView (generics.RetrieveUpdateDestroyAPIView):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializers
 
-class AvaliacaoAPIView(APIView):
-    '''
-    API DE AVALIAÇÕES
-    '''
+class AvaliacoesAPIView (generics.ListCreateAPIView):
+    queryset = Avaliacao.objects.all()
+    serializer_class = AvaliacaoSerializers
 
-    def get(self, request):
-        avaliacoes = Avaliacao.objects.all()
-        serializer = AvaliacaoSerializers(avaliacoes, many=True)
-        return Response(serializer.data)
-    
+class AvaliacaoAPIView (generics.RetrieveUpdateDestroyAPIView):
+    queryset = Avaliacao.objects.all()
+    serializer_class = AvaliacaoSerializers
+
+class UsuarioAPIView (generics.ListCreateAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializers
+
+class UsuariosAPIView (generics.RetrieveUpdateDestroyAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializers

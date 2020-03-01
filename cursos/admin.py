@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Curso, Avaliacao
+from .models import Curso, Avaliacao, Usuario
 
 @admin.register(Curso)
 class CursoAdmin(admin.ModelAdmin):
@@ -11,3 +11,7 @@ class CursoAdmin(admin.ModelAdmin):
 @admin.register(Avaliacao)
 class AvaliacaoAdmin(admin.ModelAdmin):
     list_display = ( 'curso', 'nome', 'email', 'avaliacao', 'ativo', 'criacao', 'atualizacao')
+
+@admin.register(Usuario)
+class UsuarioAdmin(admin.ModelAdmin):
+    list_display = ( 'nome', 'email', 'cpf', 'urlCurriculo' )
