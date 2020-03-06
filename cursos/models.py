@@ -46,7 +46,7 @@ class Usuario(Base):
 
     nome = models.CharField(unique=True, max_length=255, default='')
     email = models.EmailField()
-    cpf = models.DecimalField(unique=True, max_digits=11, decimal_places=0)
+    cpf = models.BigIntegerField(unique=True)
     urlCurriculo = models.URLField(unique=True)
 
     class Meta:
